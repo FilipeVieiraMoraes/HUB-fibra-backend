@@ -1,128 +1,68 @@
-# Backend HUB - Node.js + Express
+# Backend HUB Fibra - Node.js + Express + MySQL
 
-Backend simples feito em JavaScript puro para o projeto HUB.
+Backend do CRM Inteligente HUB Fibra, integrado com banco de dados MySQL hospedado no Railway.
 
-Esta versão usa apenas:
+## Tecnologias
 
 - Node.js
 - Express
-
-Não usa:
-
-- CORS
+- MySQL2
 - Dotenv
-- TypeScript
-- Banco externo
+- CORS
 
-Os dados estão simulados em memória no arquivo:
+## Como rodar localmente
 
-```txt
-src/data/database.js
-```
-
-## Como rodar
-
-Instale as dependências:
-
-```bash
+1. Clone o repositório ou baixe o ZIP
+2. Instale as dependências:
 npm install
-```
+3. Crie um arquivo `.env` na raiz com as seguintes variáveis:
+   
+PORT=3001
 
-Rode o servidor:
+DB_HOST=seu_host
 
-```bash
-npm run dev
-```
+DB_PORT=sua_porta
 
-Ou:
+DB_USER=seu_usuario
 
-```bash
+DB_PASSWORD=sua_senha
+
+DB_NAME=hub_fibra
+
+   > O arquivo `.env` não é versionado por conter credenciais sensíveis.
+   > Para rodar o projeto, solicite as credenciais do banco ao responsável pelo servidor Railway.
+
+5. Rode o servidor:
 npm start
-```
 
-A API ficará disponível em:
+A API ficará disponível em `http://localhost:3001`
 
-```txt
-http://localhost:3001
-```
+## Rotas disponíveis
 
-## Rotas
-
-### Teste
-
-```txt
+### Health
 GET /api/health
-```
-
-### Dashboard
-
-```txt
-GET /api/dashboard
-```
 
 ### Empresas
-
-```txt
 GET    /api/companies
 GET    /api/companies/:id
 POST   /api/companies
 PUT    /api/companies/:id
 DELETE /api/companies/:id
-```
-
-Exemplo de POST em `/api/companies`:
-
-```json
-{
-  "name": "Nova Empresa",
-  "sector": "Tecnologia",
-  "status": "Ativa",
-  "employees": 50,
-  "engagement": 80,
-  "city": "Brasília",
-  "contactEmail": "contato@novaempresa.com"
-}
-```
 
 ### Engajamento
+GET  /api/engagement
+POST /api/engagement/recalcular/:id
 
-```txt
-GET /api/engagement
-```
+### Alertas
+GET /api/alerts
+
+### Recomendações
+GET /api/recommendations
 
 ### Relatórios
-
-```txt
 GET  /api/reports
 POST /api/reports
-```
-
-Exemplo de POST em `/api/reports`:
-
-```json
-{
-  "title": "Relatório de teste",
-  "type": "Empresas"
-}
-```
 
 ### Configurações
-
-```txt
 GET /api/settings
 PUT /api/settings/:key
-```
-
-Exemplo de PUT em `/api/settings/platformName`:
-
-```json
-{
-  "value": "HUB Admin"
-}
-```
-
-## Observação importante
-
-Como esta versão não usa banco de dados real, os dados criados ou alterados ficam salvos apenas enquanto o servidor estiver rodando.
-
-Se você parar e iniciar o servidor novamente, os dados voltam ao estado inicial do arquivo `database.js`.
