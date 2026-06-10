@@ -124,3 +124,14 @@ http://localhost:3001
 | PUT | `/api/settings/:key` |
 
 ---
+
+## ⚠️ Aviso sobre o Banco de Dados
+
+O banco de dados MySQL está hospedado no Railway no plano gratuito.
+Caso o serviço esteja indisponível, é necessário recriar o ambiente localmente:
+
+1. Instale o MySQL localmente
+2. Crie um banco chamado `hub_fibra`
+3. Execute o script de criação das tabelas disponível no repositório:
+   https://github.com/PauloVMA07/hub-fibra-bd
+4. Atualize o arquivo `.env` com as credenciais locais
